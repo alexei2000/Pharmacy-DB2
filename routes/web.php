@@ -40,7 +40,7 @@ Route::get('/medicinas/{id}', 'App\Http\Controllers\MedicinesController@show');
 
 Route::delete('/medicinas/{id}', 'App\Http\Controllers\MedicinesController@destroy')->name('medicines.destroy');
 
-Route::post('/medicinas','App\Http\Controllers\MedicinesController@store' );
+Route::post('/medicinas', 'App\Http\Controllers\MedicinesController@store');
 
 
 //Rutas para Laboratorios
