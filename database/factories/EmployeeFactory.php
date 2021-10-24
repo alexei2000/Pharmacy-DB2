@@ -23,6 +23,7 @@ class EmployeeFactory extends Factory
     {
         return [
             "id" => $this->faker->ean8(),
+            "imageUrl" => $this->faker->imageUrl(150, 150),
             "name" => $this->faker->name(),
             "last_name" => $this->faker->name(),
             "phone_number" => $this->faker->numerify("0424-###-####"),
