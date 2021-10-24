@@ -17,7 +17,7 @@ class CreatePharmaciesTable extends Migration
             $table->id();
             $table->string("state");
             $table->string("city");
-            $table->integer("postal_code");
+            $table->string("postal_code");
             $table->string("phone_number");
             $table->string("email");
             $table->string("address");
