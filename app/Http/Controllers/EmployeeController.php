@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     public function index(Employee $employees)
     {
 
-        return view('pages.employees', ["employees" => $employees->all()]);
+        return view('pages.employees.index', ["employees" => $employees->all()]);
     }
 
     /**
