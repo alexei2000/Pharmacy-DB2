@@ -5,15 +5,16 @@
   <div class="card">
     <div class="card-body d-flex justify-content-between">
       <h4 class="box-title">Empleados</h4>
-      <button onclick="" type="button" class="btn btn-success btn-sm"><span><i
-            class="mr-2 fas fa-plus"></i></span>Nuevo</button>
+      <button onclick="document.location = '{{route('employees.create')}}'" type="button"
+        class="btn btn-success btn-sm"><span><i class="mr-2 fas fa-plus"></i></span>Nuevo</button>
     </div>
     <div class="card-body--">
       <div class="table-stats order-table ov-h">
-        <table class="table ">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th class="serial">#</th>
+              <th>Cédula</th>
               <th class="avatar">Foto</th>
               <th>Nombre</th>
               <th>Apellido</th>
@@ -24,11 +25,12 @@
           </thead>
           <tbody>
             @foreach ($employees as $employee)
-            <tr>
+            <tr style="cursor: pointer" onclick="document.location = '{{route('employees.show', $employee->id)}}'">
               <td>{{$loop->index + 1}}</td>
+              <td>{{$employee->id}}</td>
               <td>
                 <div class="round-img">
-                  <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                  <img class="rounded-circle" src="{{$employee->imageUrl}}" alt="{{$employee->name}}">
                 </div>
               </td>
               <td> <span>{{$employee->name}}</span> </td>
