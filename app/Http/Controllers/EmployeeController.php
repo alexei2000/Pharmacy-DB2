@@ -47,12 +47,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-        //
-=======
         $employee = Employee::find($id);
         return $employee;
->>>>>>> feature/dashboard
     }
 
     /**
