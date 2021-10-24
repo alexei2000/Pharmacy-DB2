@@ -15,14 +15,14 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->string("id")->primary();
-            $table->foreignId("pharmacy_id")->constrained("pharmacies");
+            $table->foreignId("pharmacy_id")->nullable()->constrained("pharmacies");
             $table->string("name");
             $table->string("last_name");
             $table->string("phone_number")->unique();;
-            $table->integer("charge");
+            $table->string("job");
             $table->string("email")->unique();
             $table->date("date_of_birth");
-            $table->enum("gender",["male", "female"]);
+            $table->enum("gender", ["male", "female"]);
             $table->timestamps();
         });
     }
