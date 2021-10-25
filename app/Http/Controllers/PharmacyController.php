@@ -14,25 +14,21 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        $pharmacies = Pharmacy::all();
+        $items = Pharmacy::all();
+        $title = 'Farmacias';
+        $create_route = 'pharmacies.create';
+        $show_route = 'pharmacies.show';
+        $columns = [
+            ['title' => 'Estado', 'key' => 'state'],
+            ['title' => 'Ciudad', 'key' => 'city'],
+            ['title' => 'Código Postal', 'key' => 'postal_code'],
+            ['title' => 'Número de teléfono', 'key' => 'phone_number'],
+            ['title' => 'Correo electrónico', 'key' => 'email'],
+        ];
+
         return view(
             'pages.pharmacies.index',
-            [
-                'title' => 'Farmacias',
-                'items' => $pharmacies,
-                'title' => 'Farmacias',
-                'create_route' => 'pharmacies.create',
-                'show_route' => 'pharmacies.show',
-                'columns' => [
-                    ['title' => '#', 'key' => 'id'],
-                    ['title' => 'Estado', 'key' => 'state'],
-                    ['title' => 'Ciudad', 'key' => 'city'],
-                    ['title' => 'Código Postal', 'key' => 'postal_code'],
-                    ['title' => 'Número de teléfono', 'key' => 'phone_number'],
-                    ['title' => 'Correo electrónico', 'key' => 'email'],
-                ],
-
-            ]
+            compact('items', 'title', 'create_route', 'show_route', 'columns')
         );
     }
 
@@ -43,7 +39,7 @@ class PharmacyController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.pharmacies.create');
     }
 
     /**
@@ -65,7 +61,8 @@ class PharmacyController extends Controller
      */
     public function show($id)
     {
-        return view('pages.pharmacies.show');
+        $pharmacy = Pharmacy::find($id);
+        return view('pages.pharmacies.show', compact('pharmacy'));
     }
 
     /**
