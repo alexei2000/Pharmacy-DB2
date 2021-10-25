@@ -1,94 +1,149 @@
 @extends('layouts.appLayout')
 
 @section('content')
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-8">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <ol class="breadcrumb text-left">
+              <li><a href="#">Creación de empleado</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 d-flex justify-content-end align-items-center">
+        <div>
+          <button type="submit" class="btn btn-primary btn-sm"><span><i
+                class="mr-2 fas fa-plus"></i></span>Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="content">
   <div class="animated fadeIn">
     <div class="row">
       <div class="col-xs-6 col-sm-6">
         <div class="card">
           <div class="card-header">
-            <strong>Masked Input</strong> <small> Small Text Mask</small>
+            <strong>Datos personales</strong>
           </div>
           <div class="card-body card-block">
-            <div class="form-group">
-              <label class=" form-control-label">Date input</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                <input class="form-control">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <input type="file" id="formFile">
+                </div>
               </div>
-              <small class="form-text text-muted">ex. 99/99/9999</small>
             </div>
-            <div class="form-group">
-              <label class=" form-control-label">Phone input</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                <input class="form-control">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Nombres</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
               </div>
-              <small class="form-text text-muted">ex. (999) 999-9999</small>
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Apellidos</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label class=" form-control-label">Taxpayer Identification Numbers</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                <input class="form-control">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-control-label">Fecha de nacimiento</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
               </div>
-              <small class="form-text text-muted">ex. 99-9999999</small>
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Cedula</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-male"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label class=" form-control-label">Social Security Number</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                <input class="form-control">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Género</label>
+                  <div class="row">
+                    <div class="col d-flex align-items-center" style="height:38px;">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Masculino
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col d-flex align-items-center" style="width:38px;">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                          checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Femenino
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <small class="form-text text-muted">ex. 999-99-9999</small>
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Numero de teléfono</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label class=" form-control-label">Eye Script</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                <input class="form-control">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class=" form-control-label">Email</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fas fa-envelope"></i></div>
+                    <input class="form-control">
+                  </div>
+                </div>
               </div>
-              <small class="form-text text-muted">ex. ~9.99 ~9.99 999</small>
-            </div>
-            <div class="form-group">
-              <label class=" form-control-label">Credit Card Number</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
-                <input class="form-control">
-              </div>
-              <small class="form-text text-muted">ex. 9999 9999 9999 9999</small>
             </div>
           </div>
         </div>
       </div>
-
       <div class="col-xs-6 col-sm-6">
         <div class="card">
           <div class="card-header">
-            <strong class="card-title">Standard Select</strong>
+            <strong class="card-title">Farmacia en la que trabaja</strong>
           </div>
           <div class="card-body">
-
-            <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="1">
-              <option value="" label="default"></option>
-              <option value="United States">United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Afghanistan">Afghanistan</option>
-              <option value="Aland Islands">Aland Islands</option>
-              <option value="Albania">Albania</option>
-              <option value="Algeria">Algeria</option>
-              <option value="American Samoa">American Samoa</option>
-              <option value="Andorra">Andorra</option>
-              <option value="Angola">Angola</option>
-              <option value="Anguilla">Anguilla</option>
-              <option value="Antarctica">Antarctica</option>
+            <select data-placeholder="Farmacias" class="standardSelect" tabindex="1">
+              @foreach ($pharmacies as $pharmacy)
+              <option value="{{$pharmacy->id}}">{{$pharmacy->state}} ({{$pharmacy->city}})</option>
+              @endforeach
             </select>
           </div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <strong class="card-title">Multi Select</strong>
+            <strong class="card-title">Farmacéutico</strong>
           </div>
           <div class="card-body">
 
@@ -112,10 +167,9 @@
 
         <div class="card">
           <div class="card-header">
-            <strong class="card-title">Multi Select with Groups</strong>
+            <strong class="card-title">Pasante</strong>
           </div>
           <div class="card-body">
-
             <select data-placeholder="Your Favorite Football Team" multiple class="standardSelect" tabindex="5">
               <option value="" label="default"></option>
               <optgroup label="NFC EAST">
@@ -173,4 +227,6 @@
     </div>
   </div><!-- .animated -->
 </div><!-- .content -->
+<div class="clearfix"></div>
+
 @endsection

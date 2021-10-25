@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia</title>
+    <title>Farmaplay</title>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -28,19 +28,16 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Secciones</li><!-- /.menu-title -->
-                    <li class="active">
-                        <a href="{{url('/dashboard')}}"><i class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
+                    <li @class(['active'=> (request()->is("employees*"))]) >
+                        <a href="{{route('employees.index')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
                     </li>
-                    <li>
-                        <a href="{{url('/employees')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
-                    </li>
-                    <li>
+                    <li @class(['active'=> (request()->is("pharmacies*"))])>
                         <a href="{{url('/pharmacies')}}"><i class="menu-icon fas fa-clinic-medical"></i>Farmacias</a>
                     </li>
-                    <li>
+                    <li @class(['active'=> (request()->is("medicines*"))])>
                         <a href="{{url('/medicines')}}"><i class="menu-icon fas fa-capsules"></i>Medicamentos</a>
                     </li>
-                    <li>
+                    <li @class(['active'=> (request()->is("laboratories*"))])>
                         <a href="{{url('/laboratories')}}"><i class="menu-icon fas fa-vials"></i>Laboratorios</a>
                     </li>
                 </ul>
@@ -84,7 +81,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin
+                        Copyright &copy; 2021 Farmaplay
                     </div>
                 </div>
             </div>
