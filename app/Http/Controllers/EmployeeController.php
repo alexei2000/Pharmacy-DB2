@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Job;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+
 
 class EmployeeController extends Controller
 {
@@ -25,7 +28,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('pages.employees.create');
+        $pharmacies = Pharmacy::all();
+        $jobs = Job::all();
+        return view('pages.employees.create', ["pharmacies" => $pharmacies, "jobs" => $jobs]);
     }
 
     /**
@@ -36,7 +41,6 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
