@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Laboratories extends Model
 {
-    //use HasFactory;
+    use HasFactory;
+    protected $fillable = ["name", "address", "email", "phone_number"];
 }

@@ -41,6 +41,6 @@ class LaboratoriesController extends Controller
         $laboratorio = Laboratories::findOrFail($id);
         $laboratorio->delete();
 
-        redirect('/laboratorios');
+        return redirect('/laboratorios');
     }
 }

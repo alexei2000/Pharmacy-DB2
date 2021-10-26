@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medicines extends Model
 {
-    //use HasFactory;
+    use HasFactory;
     //protected $table = "medicines_t";
 
     //watch elizabeth gilbert ted talk

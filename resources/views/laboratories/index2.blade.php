@@ -2,12 +2,11 @@
 
 @section('content')
 
-
 <div class="container">
   <div class="card">
     <div class="card-body d-flex justify-content-between">
       <h4 class="box-title">Laboratorios</h4>
-      <button onclick="document.location = '{{route('laboratorios.create')}}'" type="button"
+      <button 
         class="btn btn-success btn-sm"><span><i class="mr-2 fas fa-plus"></i></span>Nuevo</button>
     </div>
     <div class="card-body--">
@@ -24,7 +23,7 @@
           </thead>
           <tbody>
             @foreach($laboratorios as $labo)
-            <tr style="cursor: pointer" onclick="document.location = '{{route('laboratorios.show', $labo->id)}}'">
+            <tr style="cursor: pointer" >
               <td>{{$loop->index + 1}}</td>
               <td>{{$labo->name}}</td>
               <td> <span>{{$labo->address}}</span> </td>

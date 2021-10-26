@@ -1,15 +1,13 @@
-@extends ('layouts.app')
-
+@extends('layouts.appLayout')
 
 @section('content')
+    <p><a href="{{ route('laboratorios.edit', $laboratorio->id) }}">editar</a></p>
     <div class="wrapper laboratorio">
         <h1>{{ $laboratorio->name }}</h1>
         <p class="">{{ $laboratorio->name }} </p>
         <p class="">{{ $laboratorio->address }} </p>
        
-
-        <p>{{ route('medicines.destroy', $laboratorio->id) }}</p>
-        <form action="{{ route('laboratories.destroy', $laboratorio->id) }}" method="POST">
+        <form action="{{ route('laboratorios.destroy', $laboratorio->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button>Borrar laboratorio</button>

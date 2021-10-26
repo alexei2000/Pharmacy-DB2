@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Laboratory;
+use App\Models\Laboratories;
 
 class LaboratoryController extends Controller
 {
@@ -12,9 +12,9 @@ class LaboratoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Laboratory $laboratory)
+    public function index(Laboratories $laboratory)
     {
-        return $laboratory->all();
+        return view('laboratories.index', ["laboratorios" => $laboratory->all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class LaboratoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('laboratories.create');
     }
 
     /**
@@ -35,8 +35,8 @@ class LaboratoryController extends Controller
      */
     public function store(Request $request)
     {
-        $laboratory = Laboratory::create($request->all());
-        return $laboratory;
+        $laboratory = Laboratories::create($request->all());
+        return redirect('/laboratorios')->with('mssg', 'nueva medicina creada');
     }
 
     /**
@@ -47,8 +47,8 @@ class LaboratoryController extends Controller
      */
     public function show($id)
     {
-        $laboratory = Laboratory::find($id);
-        return $laboratory;
+        $laboratory = Laboratories::findOrFail($id);
+        return view('laboratories.show', ['laboratorio' => $laboratory]);
     }
 
     /**
@@ -59,7 +59,8 @@ class LaboratoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $laboratory = Laboratories::findOrFail($id);
+        return view('laboratories.edit', ['laboratorio' => $laboratory]);
     }
 
     /**
@@ -71,9 +72,9 @@ class LaboratoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $laboratory = Laboratory::find($id);
+        $laboratory = Laboratories::findOrFail($id);
         $laboratory->update($request->all());
-        return  $laboratory;
+        return  redirect('/laboratorios');
     }
 
     /**
@@ -84,8 +85,8 @@ class LaboratoryController extends Controller
      */
     public function destroy($id)
     {
-        $laboratory = Laboratory::find($id);
+        $laboratory = Laboratories::find($id);
         $laboratory->delete();
-        return  $laboratory;
+        return redirect('/laboratorios');
     }
 }
