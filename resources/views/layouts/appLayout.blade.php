@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="/css/cs-skin-elastic.css">
@@ -20,19 +21,34 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <style>
-        .fadeIn, .card {
-            animation: fadeIn ease-in 0.5s;
-        }
+        <<<<<<< Updated upstream .fadeIn,
+        .card {
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+            =======.fadeIn,
+            .card {
+                >>>>>>>Stashed changes animation: fadeIn ease-in 0.5s;
             }
 
-            to {
-                opacity: 1;
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
             }
-        }
+
+            .alerts-container {
+                position: fixed;
+                z-index: 1000;
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 200px;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
     </style>
 </head>
 
@@ -74,7 +90,8 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
@@ -101,6 +118,18 @@
             </div>
         </footer>
         <!-- /.site-footer -->
+
+        <div class="alerts-container">
+            @if (session('success'))
+            <div class="alert alert-success fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+        </div>
+
     </div>
     <!-- /#right-panel -->
 

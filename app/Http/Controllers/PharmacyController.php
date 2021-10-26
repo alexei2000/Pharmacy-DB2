@@ -96,6 +96,8 @@ class PharmacyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pharmacy::destroy($id);
+
+        return redirect()->route('pharmacies.index')->with("success", "Farmacia eliminada correctamente.");
     }
 }
