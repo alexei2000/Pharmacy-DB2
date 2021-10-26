@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmaplay</title>
+    <title>Farmacia</title>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -19,37 +19,6 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/lib/chosen/chosen.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <style>
-        <<<<<<< Updated upstream .fadeIn,
-        .card {
-
-            =======.fadeIn,
-            .card {
-                >>>>>>>Stashed changes animation: fadeIn ease-in 0.5s;
-            }
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-
-                to {
-                    opacity: 1;
-                }
-            }
-
-            .alerts-container {
-                position: fixed;
-                z-index: 1000;
-                top: 1.5rem;
-                right: 1.5rem;
-                width: 200px;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-    </style>
 </head>
 
 <body>
@@ -59,16 +28,19 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Secciones</li><!-- /.menu-title -->
-                    <li @class(['active'=> (request()->is("employees*"))]) >
-                        <a href="{{route('employees.index')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
+                    <li class="active">
+                        <a href="{{url('/dashboard')}}"><i class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
                     </li>
-                    <li @class(['active'=> (request()->is("pharmacies*"))])>
+                    <li>
+                        <a href="{{url('/employees')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
+                    </li>
+                    <li>
                         <a href="{{url('/pharmacies')}}"><i class="menu-icon fas fa-clinic-medical"></i>Farmacias</a>
                     </li>
-                    <li @class(['active'=> (request()->is("medicines*"))])>
+                    <li>
                         <a href="{{url('/medicines')}}"><i class="menu-icon fas fa-capsules"></i>Medicamentos</a>
                     </li>
-                    <li @class(['active'=> (request()->is("laboratories*"))])>
+                    <li>
                         <a href="{{url('/laboratories')}}"><i class="menu-icon fas fa-vials"></i>Laboratorios</a>
                     </li>
                 </ul>
@@ -112,24 +84,12 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2021 Farmaplay
+                        Copyright &copy; 2018 Ela Admin
                     </div>
                 </div>
             </div>
         </footer>
         <!-- /.site-footer -->
-
-        <div class="alerts-container">
-            @if (session('success'))
-            <div class="alert alert-success fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            @endif
-        </div>
-
     </div>
     <!-- /#right-panel -->
 
@@ -143,13 +103,12 @@
 
     <script>
         jQuery(document).ready(function() {
-            jQuery(".standardSelect").chosen({
-                disable_search_threshold: 10
-                , no_results_text: "Oops, nothing found!"
-                , width: "100%"
-            });
+        jQuery(".standardSelect").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
         });
-
+    });
     </script>
 </body>
 

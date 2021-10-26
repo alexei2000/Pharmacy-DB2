@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Models\Medicines;
 
-class EmployeeController extends Controller
+class MedicineController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Employee $employees)
+    public function index(Medicines $medicines)
     {
-
-        return view('pages.employees.index', ["employees" => $employees->all()]);
+        return view('medicamento.index',[
+            'medicines' => $medicines->all(),
+        ]);
     }
 
     /**
@@ -25,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('pages.employees.create');
+        return view('medicamento.create');
     }
 
     /**
@@ -36,7 +37,8 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $medicine = $Medicines::create($request->all());
+        return redirect('/medicinas')->with('mssg', 'Medicina agregada');
     }
 
     /**
@@ -47,8 +49,9 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
-        return $employee;
+        $medicina = Medicines::findOrFail($id);
+
+        return view('medicamento.show', ['medicina' => $medicina]);
     }
 
     /**
@@ -59,7 +62,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medicina = Medicines::findOrFail($id);
+
+        return view('medicamento.edit', ['medicina' => $medicina]);
     }
 
     /**
@@ -71,7 +76,9 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $medicina = Medicines::findOrFail($id);
+        $medicina->update($request->all());
+        return  redirect('/medicinas');
     }
 
     /**
@@ -82,6 +89,9 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $medicina = Medicines::findOrFail($id);
+        $medicina->delete();
+
+        return redirect('/medicinas');
     }
 }

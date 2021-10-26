@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
+class LaboratorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Employee $employees)
+    public function index()
     {
-
-        return view('pages.employees.index', ["employees" => $employees->all()]);
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('pages.employees.create');
+        //
     }
 
     /**
@@ -47,8 +45,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
-        return $employee;
+        //
     }
 
     /**
