@@ -88,7 +88,8 @@ class PharmacyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pharmacy = Pharmacy::find($id);
+        return view('pages.pharmacies.edit', compact('pharmacy'));
     }
 
     /**
@@ -100,7 +101,18 @@ class PharmacyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pharmacy = Pharmacy::find($id);
+
+        $pharmacy->state = $request->state;
+        $pharmacy->city = $request->city;
+        $pharmacy->postal_code = $request->postal_code;
+        $pharmacy->address = $request->address;
+        $pharmacy->email = $request->email;
+        $pharmacy->phone_number = $request->phone_number;
+
+        $pharmacy->save();
+
+        return redirect()->route('pharmacies.show', $pharmacy)->with('success', 'Farmacia actualizada');
     }
 
     /**
