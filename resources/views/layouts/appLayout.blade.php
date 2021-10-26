@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/lib/chosen/chosen.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='/favicon.png' rel='icon'>
     <style>
         .fadeIn,
         .card {
@@ -49,6 +50,7 @@
 </head>
 
 <body>
+    @auth
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -56,8 +58,7 @@
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Secciones</li><!-- /.menu-title -->
                     <li class="active">
-                        <a href="{{route('dashboard')}}"><i
-                                class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
+                        <a href="{{route('dashboard')}}"><i class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
                     </li>
                     <li>
                         <a href="{{route('employees.index')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
@@ -76,9 +77,10 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
+    @endauth
     <!-- /#left-panel -->
     <!-- Right Panel -->
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="@guest margin-left: 0; @endguest">
         <!-- Header-->
         <header id="header" class="header">
             <div class="top-left">
@@ -91,16 +93,28 @@
             </div>
             <div class="top-right">
                 <div class="header-menu">
+                    @auth
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+                            <a class="nav-link" href="{{ route('logout') }}" form="logout-form" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                <i class="fa fa-power-off"></i>Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
+                    @else
+                    <a class="nav-link" href="{{ route('login') }}"><i class="fa fa-key mr-2"></i>Login</a>
+                    <a class="nav-link" href="{{ route('register') }}"><i class="fa fa-sign-in-alt mr-2"></i>Registrarse</a>
+                    @endauth
                 </div>
             </div>
         </header>
