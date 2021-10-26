@@ -169,7 +169,7 @@
                     <label class=" form-control-label">Número de colegiatura</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fas fa-graduation-cap"></i></div>
-                      <input class="form-control" name="pharmacist.tuition_number">
+                      <input class="form-control" type="number" name="pharmacist.tuition_number">
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
                     <label class=" form-control-label">Número sanitario</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fas fa-file-medical"></i></div>
-                      <input class="form-control" name="pharmacist.health_number">
+                      <input class="form-control" type="number" name="pharmacist.health_number">
                     </div>
                   </div>
                 </div>
@@ -189,7 +189,7 @@
                     <label class=" form-control-label">Número de registro</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fas fa-address-book"></i></div>
-                      <input class="form-control" name="pharmacist.registry_number">
+                      <input class="form-control" type="number" name="pharmacist.registry_number">
                     </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@
                     <label class="form-control-label">Fecha de inicio</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                      <input type="date" class="form-control" name="intern.init_date">
+                      <input type="date" class="form-control" name="intern.initial_date">
                     </div>
                   </div>
                 </div>
@@ -257,7 +257,7 @@
                     <label class=" form-control-label">Fecha de finalización</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                      <input type="date" class="form-control" name="intern.finish_date">
+                      <input type="date" class="form-control" name="intern.final_date">
                     </div>
                   </div>
                 </div>
