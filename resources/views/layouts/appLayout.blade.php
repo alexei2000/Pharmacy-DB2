@@ -21,34 +21,31 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <style>
-        <<<<<<< Updated upstream .fadeIn,
+        .fadeIn,
         .card {
+            animation: fadeIn ease-in 0.5s;
+        }
 
-            =======.fadeIn,
-            .card {
-                >>>>>>>Stashed changes animation: fadeIn ease-in 0.5s;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
 
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-
-                to {
-                    opacity: 1;
-                }
+            to {
+                opacity: 1;
             }
+        }
 
-            .alerts-container {
-                position: fixed;
-                z-index: 1000;
-                top: 1.5rem;
-                right: 1.5rem;
-                width: 200px;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
+        .alerts-container {
+            position: fixed;
+            z-index: 1000;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
     </style>
 </head>
 

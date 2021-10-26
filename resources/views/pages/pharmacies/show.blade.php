@@ -31,7 +31,7 @@
             </dl>
         </div>
         <div class="card-body">
-            <a class="btn btn-primary">Editar</a>
+            <a class="btn btn-primary" href="#">Editar</a>
             <button class="btn btn-danger" type="button" data-toggle="modal"
                 data-target="#confirm-delete-pharmacy">Eliminar</button>
         </div>

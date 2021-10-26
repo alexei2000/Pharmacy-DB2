@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 
 class PharmacyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private function get_datatable_data()
     {
         $items = Pharmacy::all();
         $title = 'Farmacias';
@@ -26,10 +21,17 @@ class PharmacyController extends Controller
             ['title' => 'Correo electrónico', 'key' => 'email'],
         ];
 
-        return view(
-            'pages.pharmacies.index',
-            compact('items', 'title', 'create_route', 'show_route', 'columns')
-        );
+        return compact('items', 'title', 'create_route', 'show_route', 'columns');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('pages.pharmacies.index', $this->get_datatable_data());
     }
 
     /**
@@ -50,7 +52,20 @@ class PharmacyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $pharmacy = new Pharmacy();
+
+        $pharmacy->state = $request->state;
+        $pharmacy->city = $request->city;
+        $pharmacy->postal_code = $request->postal_code;
+        $pharmacy->address = $request->address;
+        $pharmacy->email = $request->email;
+        $pharmacy->phone_number = $request->phone_number;
+
+        $pharmacy->save();
+
+        return redirect()->route('pharmacies.show', $pharmacy)->with('success', 'Farmacia creada');
     }
 
     /**
