@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\PharmacyController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -50,6 +51,9 @@ Route::resource('medicinas', MedicineController::class);
 //Rutas para Laboratorios
 
 Route::resource('laboratorios', LaboratoryController::class);
+
+
+Route::resource('pharmacies', PharmacyController::class);
 
 
 // Route::get('/laboratorios', 'App\Http\Controllers\LaboratoriesController@index');

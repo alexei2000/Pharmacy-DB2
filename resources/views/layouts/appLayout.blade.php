@@ -56,19 +56,21 @@
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Secciones</li><!-- /.menu-title -->
                     <li class="active">
-                        <a href="{{url('/dashboard')}}"><i class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
+                        <a href="{{route('dashboard')}}"><i
+                                class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
                     </li>
                     <li>
-                        <a href="{{url('/employees')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
+                        <a href="{{route('employees.index')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
                     </li>
                     <li>
-                        <a href="{{url('/pharmacies')}}"><i class="menu-icon fas fa-clinic-medical"></i>Farmacias</a>
+                        <a href="{{route('pharmacies.index')}}"><i
+                                class="menu-icon fas fa-clinic-medical"></i>Farmacias</a>
                     </li>
                     <li>
-                        <a href="{{url('/medicines')}}"><i class="menu-icon fas fa-capsules"></i>Medicamentos</a>
+                        <a href="{{route('medicinas.index')}}"><i class="menu-icon fas fa-capsules"></i>Medicamentos</a>
                     </li>
                     <li>
-                        <a href="{{url('/laboratories')}}"><i class="menu-icon fas fa-vials"></i>Laboratorios</a>
+                        <a href="{{route('laboratorios.index')}}"><i class="menu-icon fas fa-vials"></i>Laboratorios</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -81,7 +83,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img style="height: 40px" src="/images/farmaplay.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img style="height: 40px" src="/images/farmaplay.png"
+                            alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="/images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
