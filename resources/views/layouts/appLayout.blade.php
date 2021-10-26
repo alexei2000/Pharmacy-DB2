@@ -57,20 +57,17 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Secciones</li><!-- /.menu-title -->
-                    <li class="active">
-                        <a href="{{route('dashboard')}}"><i class="menu-icon fas fa-tachometer-alt"></i>Resumen</a>
-                    </li>
-                    <li>
+                    <li @class(['active'=>(request()->is('employees*'))])>
                         <a href="{{route('employees.index')}}"><i class="menu-icon fas fa-users"></i>Empleados</a>
                     </li>
-                    <li>
+                    <li @class(['active'=>(request()->is('pharmacies*'))]) >
                         <a href="{{route('pharmacies.index')}}"><i
                                 class="menu-icon fas fa-clinic-medical"></i>Farmacias</a>
                     </li>
-                    <li>
+                    <li @class(['active'=>(request()->is('medicienes*'))])>
                         <a href="{{route('medicinas.index')}}"><i class="menu-icon fas fa-capsules"></i>Medicamentos</a>
                     </li>
-                    <li>
+                    <li @class(['active'=>(request()->is('laboratories*'))])>
                         <a href="{{route('laboratorios.index')}}"><i class="menu-icon fas fa-vials"></i>Laboratorios</a>
                     </li>
                 </ul>
@@ -113,7 +110,8 @@
                     </div>
                     @else
                     <a class="nav-link" href="{{ route('login') }}"><i class="fa fa-key mr-2"></i>Login</a>
-                    <a class="nav-link" href="{{ route('register') }}"><i class="fa fa-sign-in-alt mr-2"></i>Registrarse</a>
+                    <a class="nav-link" href="{{ route('register') }}"><i
+                            class="fa fa-sign-in-alt mr-2"></i>Registrarse</a>
                     @endauth
                 </div>
             </div>

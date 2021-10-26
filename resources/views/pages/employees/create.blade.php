@@ -1,7 +1,8 @@
 @extends('layouts.appLayout')
 
 @section('content')
-<form>
+<form action="{{route('employees.store')}}" method="POST" enctype="multipart/form-data">
+  @csrf
   <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
       <div class="row m-0">
@@ -35,7 +36,7 @@
               <div class="row">
                 <div class="col">
                   <div class="mb-3">
-                    <input name="image" type="file">
+                    <input name="image" type="file" accept="image/*" required>
                   </div>
                 </div>
               </div>
@@ -87,7 +88,7 @@
                     <div class="row">
                       <div class="col d-flex align-items-center" style="height:38px;">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="radio1">
+                          <input class="form-check-input" type="radio" value="male" name="gender" id="radio1">
                           <label class="form-check-label" for="radio1">
                             Masculino
                           </label>
@@ -95,7 +96,7 @@
                       </div>
                       <div class="col d-flex align-items-center" style="width:38px;">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="radio2" checked>
+                          <input class="form-check-input" type="radio" value="female" name="gender" id="radio2" checked>
                           <label class="form-check-label" for="radio2">
                             Femenino
                           </label>
@@ -135,7 +136,7 @@
               <div class="form-group">
                 <label class=" form-control-label">En que farmacia trabaja</label>
                 <div class="input-group">
-                  <select data-placeholder="Farmacias" class="standardSelect" tabindex="1" name="pharmacies">
+                  <select data-placeholder="Farmacias" class="standardSelect" tabindex="1" name="pharmacy_id">
                     @foreach ($pharmacies as $pharmacy)
                     <option value="{{$pharmacy->id}}">{{$pharmacy->state}} ({{$pharmacy->city}})</option>
                     @endforeach
@@ -145,7 +146,7 @@
               <div class="form-group">
                 <label class=" form-control-label">En que puesto trabaja</label>
                 <div class="input-group">
-                  <select data-placeholder="Puestos" class="standardSelect" tabindex="1" name="jobs">
+                  <select data-placeholder="Puestos" class="standardSelect" tabindex="1" name="job_id">
                     @foreach ($jobs as $job)
                     <option value="{{$job->id}}">{{$job->name}}</option>
                     @endforeach
@@ -159,7 +160,7 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
               <strong class="card-title">Es farmacéutico</strong>
-              <input type="checkbox" name="isPharmacist" onchange="togglePharmacist(this.checked)" />
+              <input type="checkbox" name="isPharmacist" value="true" onchange="togglePharmacist(this.checked)" />
             </div>
             <div class="card-body" id="pharmacist-body" style="display: none;">
               <div class="row">
@@ -218,7 +219,7 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
               <strong class="card-title">Es pasante</strong>
-              <input name="isIntern" type="checkbox" onchange="toggleIntern(this.checked)" />
+              <input name="isIntern" type="checkbox" value="true" onchange="toggleIntern(this.checked)" />
             </div>
             <div class="card-body" id="intern-body" style="display: none;">
               <div class="row">
@@ -275,7 +276,7 @@
                       <label class=" form-control-label">Nombres</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
-                        <input class="form-control" name="representative.name" required>
+                        <input class="form-control" name="representative.name">
                       </div>
                     </div>
                   </div>
@@ -284,7 +285,7 @@
                       <label class=" form-control-label">Apellidos</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
-                        <input class="form-control" name="representative.last_name" required>
+                        <input class="form-control" name="representative.last_name">
                       </div>
                     </div>
                   </div>
@@ -295,7 +296,7 @@
                       <label class=" form-control-label">Cédula</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                        <input class="form-control" name="representative.id" required>
+                        <input class="form-control" name="representative.id">
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Job;
+use App\Models\Pharmacist;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 
@@ -41,6 +42,30 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $employee = new Employee();
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads/employees'), $imageName);
+        $employee->imageUrl = $imageName;
+        $employee->name = $request->input("name");
+        $employee->last_name = $request->input("last_name");
+        $employee->date_of_birth = $request->input("date_of_birth");
+        $employee->id = $request->input("id");
+        $employee->gender = $request->input("gender");
+        $employee->phone_number = $request->input("phone_number");
+        $employee->email = $request->input("email");
+        $employee->pharmacy_id = $request->input("pharmacy_id");
+        $employee->job_id = $request->input("job_id");
+        $employee->save();
+
+        if ($request->input("isPharmacist")) {
+            $pharmacist = new Pharmacist();
+            $pharmacist->tuition_number = $request->input("pharmacist.tuition_number");
+            $pharmacist->tuition_number = $request->input("pharmacist.tuition_number");
+        } else if ($request->input("isIntern")) {
+        }
+
+        return redirect()->route("employees.index");
     }
 
     /**
@@ -52,7 +77,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $employee = Employee::find($id);
-        return $employee;
+        return view('pages.employees.show', ["employee" => $employee]);
     }
 
     /**
@@ -86,6 +111,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::destroy($id);
+        return redirect()->route('employees.index')->with("success", "Empleado eliminado correctamente.");
     }
 }
