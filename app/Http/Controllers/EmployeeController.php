@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Intern;
 use App\Models\Job;
+use App\Models\LegalRepresentative;
 use App\Models\Pharmacist;
+use App\Models\PharmacistUniversityDegree;
 use App\Models\Pharmacy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class EmployeeController extends Controller
 {
@@ -18,7 +23,6 @@ class EmployeeController extends Controller
      */
     public function index(Employee $employees)
     {
-
         return view('pages.employees.index', ["employees" => $employees->all()]);
     }
 
@@ -42,27 +46,58 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = new Employee();
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('uploads/employees'), $imageName);
-        $employee->imageUrl = $imageName;
-        $employee->name = $request->input("name");
-        $employee->last_name = $request->input("last_name");
-        $employee->date_of_birth = $request->input("date_of_birth");
-        $employee->id = $request->input("id");
-        $employee->gender = $request->input("gender");
-        $employee->phone_number = $request->input("phone_number");
-        $employee->email = $request->input("email");
-        $employee->pharmacy_id = $request->input("pharmacy_id");
-        $employee->job_id = $request->input("job_id");
-        $employee->save();
-
-        if ($request->input("isPharmacist")) {
-            $pharmacist = new Pharmacist();
-            $pharmacist->tuition_number = $request->input("pharmacist.tuition_number");
-            $pharmacist->tuition_number = $request->input("pharmacist.tuition_number");
-        } else if ($request->input("isIntern")) {
+        try {
+            DB::beginTransaction();
+            $employee = new Employee();
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/employees'), $imageName);
+            $employee->imageUrl = $imageName;
+            $employee->name = $request->input("name");
+            $employee->last_name = $request->input("last_name");
+            $employee->date_of_birth = $request->input("date_of_birth");
+            $employee->id = $request->input("id");
+            $employee->gender = $request->input("gender");
+            $employee->phone_number = $request->input("phone_number");
+            $employee->email = $request->input("email");
+            $employee->pharmacy_id = $request->input("pharmacy_id");
+            $employee->job_id = $request->input("job_id");
+            $employee->save();
+            if ($request->input("isPharmacist") === "true") {
+                $pharmacist = new Pharmacist();
+                $pharmacist->employee_id = $employee->id;
+                $pharmacist->tuition_number = $request->input("pharmacist_tuition_number");
+                $pharmacist->health_number = $request->input("pharmacist_health_number");
+                $pharmacist->save();
+                $universityDegree = new PharmacistUniversityDegree();
+                $universityDegree->pharmacist_id = $employee->id;
+                $universityDegree->registry_number = $request->input("pharmacist_registry_number");
+                $universityDegree->university = $request->input("pharmacist_university");
+                $universityDegree->date_of_graduation = $request->input("pharmacist_date_of_graduation");
+                $universityDegree->save();
+            } elseif ($request->input("isIntern")  === "true") {
+                $intern = new Intern();
+                $intern->employee_id = $employee->id;
+                $intern->permission_code = uniqid();
+                $intern->speciality = $request->input("intern_speciality");
+                $intern->university = $request->input("intern_university");
+                $intern->initial_date = $request->input("intern_initial_date");
+                $intern->final_date = $request->input("intern_final_date");
+                if (Carbon::createFromDate($employee->date_of_birth)->age < 18) {
+                    $representative = new LegalRepresentative();
+                    $representative->id = $request->input("representative_id");
+                    $representative->name = $request->input("representative_name");
+                    $representative->last_name = $request->input("representative_last_name");
+                    $representative->save();
+                    $intern->legal_representative_id = $representative->id;
+                }
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            File::delete("uploads/employees/{$imageName}");
+            $employee->id;
+            return  redirect()->route("employees.create")->with("error", "Ha ocurrido un error");
         }
 
         return redirect()->route("employees.index");
@@ -74,9 +109,8 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
-        $employee = Employee::find($id);
         return view('pages.employees.show', ["employee" => $employee]);
     }
 
@@ -111,6 +145,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        $employee = Employee::findOrFail($id);
+        File::delete("uploads/employees/{$employee->imageUrl}");
         Employee::destroy($id);
         return redirect()->route('employees.index')->with("success", "Empleado eliminado correctamente.");
     }
