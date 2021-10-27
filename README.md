@@ -1,5 +1,8 @@
 # Farmaplay
 
+## Integrantes
+- Ildebrando Quinchoa 26.154.327
+
 ## Requisitos:
 
 -   PHP & PHP Composer
