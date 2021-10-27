@@ -1,7 +1,13 @@
 @extends('layouts.appLayout')
 
 @section('content')
-    <p><a href="{{ route('laboratorios.edit', $laboratorio->id) }}">editar</a></p>
+
+
+
+    <div class="container fadeIn">
+        <div class="card">
+        <a href="{{ route('laboratorios.edit', $laboratorio->id) }}"><button class="btn btn-secondary">editar</button></a>
+        
     <div class="wrapper laboratorio">
         <h1>{{ $laboratorio->name }}</h1>
         <p class="">{{ $laboratorio->name }} </p>
@@ -14,4 +20,7 @@
         </form>
     </div>
     <a href="/laboratorios" class="back">Atras</a>
+        </div>
+    
+    </div>
 @endsection
