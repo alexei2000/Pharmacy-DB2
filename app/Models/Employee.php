@@ -16,4 +16,8 @@ class Employee extends Model
     {
         return $this->hasOne(Pharmacist::class);
     }
+    public function job()
+    {
+        return $this->hasOne(Job::class, 'id', 'job_id');
+    }
 }

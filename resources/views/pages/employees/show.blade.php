@@ -11,7 +11,7 @@
         </a>
         <div class="media-body">
           <h2 class="text-light display-6">{{ $employee->name}} {{ $employee->last_name}}</h2>
-          <p class="text-light">Empleado</p>
+          <p class="text-light">{{$employee->job->name}}</p>
         </div>
       </div>
     </div>

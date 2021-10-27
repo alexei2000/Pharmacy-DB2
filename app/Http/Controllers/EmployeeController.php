@@ -63,7 +63,7 @@ class EmployeeController extends Controller
             $employee->pharmacy_id = $request->input("pharmacy_id");
             $employee->job_id = $request->input("job_id");
             $employee->save();
-            if ($request->input("isPharmacist") === "true") {
+            if ($request->input("job_id") == "1") {
                 $pharmacist = new Pharmacist();
                 $pharmacist->employee_id = $employee->id;
                 $pharmacist->tuition_number = $request->input("pharmacist_tuition_number");
@@ -98,7 +98,7 @@ class EmployeeController extends Controller
             DB::rollback();
             File::delete("uploads/employees/{$imageName}");
             $employee->id;
-            return  redirect()->route("employees.create")->with("error", "Ha ocurrido un error");
+            return  back()->with("error", "Ha ocurrido un error");
         }
 
         return redirect()->route("employees.index");
@@ -123,7 +123,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('pages.employees.edit', ["employee" => $employee]);
     }
 
     /**
@@ -135,7 +135,20 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        /* $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/employees'), $imageName);
+            $employee->imageUrl = $imageName; */
+        $employee->name = $request->input("name");
+        $employee->last_name = $request->input("last_name");
+        $employee->date_of_birth = $request->input("date_of_birth");
+        $employee->id = $request->input("id");
+        $employee->gender = $request->input("gender");
+        $employee->phone_number = $request->input("phone_number");
+        $employee->email = $request->input("email");
+        $employee->save();
+
+        return redirect()->route('employees.show', $employee)->with('success', 'Empleado actualizado');
     }
 
     /**

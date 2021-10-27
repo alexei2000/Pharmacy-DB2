@@ -43,7 +43,7 @@
               </td>
               <td> <span>{{$employee->name}}</span> </td>
               <td> <span>{{$employee->last_name}}</span> </td>
-              <td><span>{{$employee->job}}</span></td>
+              <td><span>{{$employee->job->name}}</span></td>
               <td><span>{{ \Carbon\Carbon::createFromDate($employee->date_of_birth)->age
                   }}</span></td>
               @switch($employee->gender)
