@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Laboratories;
+use App\Models\Laboratory;
 
 class LaboratoryController extends Controller
 {
@@ -12,7 +12,7 @@ class LaboratoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Laboratories $laboratory)
+    public function index(Laboratory $laboratory)
     {
         return view('laboratories.index', ["laboratorios" => $laboratory->all()]);
     }
@@ -35,7 +35,7 @@ class LaboratoryController extends Controller
      */
     public function store(Request $request)
     {
-        $laboratory = Laboratories::create($request->all());
+        $laboratory = Laboratory::create($request->all());
         return redirect('/laboratorios')->with('mssg', 'nueva medicina creada');
     }
 
@@ -47,7 +47,7 @@ class LaboratoryController extends Controller
      */
     public function show($id)
     {
-        $laboratory = Laboratories::findOrFail($id);
+        $laboratory = Laboratory::findOrFail($id);
         return view('laboratories.show', ['laboratorio' => $laboratory]);
     }
 
@@ -59,7 +59,7 @@ class LaboratoryController extends Controller
      */
     public function edit($id)
     {
-        $laboratory = Laboratories::findOrFail($id);
+        $laboratory = Laboratory::findOrFail($id);
         return view('laboratories.edit', ['laboratorio' => $laboratory]);
     }
 
@@ -72,7 +72,7 @@ class LaboratoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $laboratory = Laboratories::findOrFail($id);
+        $laboratory = Laboratory::findOrFail($id);
         $laboratory->update($request->all());
         return  redirect('/laboratorios');
     }
@@ -85,7 +85,7 @@ class LaboratoryController extends Controller
      */
     public function destroy($id)
     {
-        $laboratory = Laboratories::find($id);
+        $laboratory = Laboratory::find($id);
         $laboratory->delete();
         return redirect('/laboratorios');
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Medicines;
+use App\Models\Medicine;
 
 class MedicineController extends Controller
 {
@@ -12,7 +12,7 @@ class MedicineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Medicines $medicines)
+    public function index(Medicine $medicines)
     {
         return view('medicamento.index',[
             'medicines' => $medicines->all(),
@@ -37,7 +37,7 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        $medicine = $Medicines::create($request->all());
+        $medicine = $Medicine::create($request->all());
         return redirect('/medicinas')->with('mssg', 'Medicina agregada');
     }
 
@@ -49,7 +49,7 @@ class MedicineController extends Controller
      */
     public function show($id)
     {
-        $medicina = Medicines::findOrFail($id);
+        $medicina = Medicine::findOrFail($id);
 
         return view('medicamento.show', ['medicina' => $medicina]);
     }
@@ -62,7 +62,7 @@ class MedicineController extends Controller
      */
     public function edit($id)
     {
-        $medicina = Medicines::findOrFail($id);
+        $medicina = Medicine::findOrFail($id);
 
         return view('medicamento.edit', ['medicina' => $medicina]);
     }
@@ -76,7 +76,7 @@ class MedicineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medicina = Medicines::findOrFail($id);
+        $medicina = Medicine::findOrFail($id);
         $medicina->update($request->all());
         return  redirect('/medicinas');
     }
@@ -89,7 +89,7 @@ class MedicineController extends Controller
      */
     public function destroy($id)
     {
-        $medicina = Medicines::findOrFail($id);
+        $medicina = Medicine::findOrFail($id);
         $medicina->delete();
 
         return redirect('/medicinas');

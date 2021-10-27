@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Laboratories;
+use App\Models\Laboratory;
 class LaboratoriesController extends Controller
 {
     //
     public function index(){
-        $laboratorios = Laboratories::all();
+        $laboratorios = Laboratory::all();
         return view('laboratories.index',[
             'laboratorios' => $laboratorios,
         ]);
     }
 
     public function show($id){
-        $laboratorio = Laboratories::findOrFail($id);
+        $laboratorio = Laboratory::findOrFail($id);
 
         return view('laboratories.show', ['laboratorio' => $laboratorio]);
     }
@@ -25,7 +25,7 @@ class LaboratoriesController extends Controller
     }
 
     public function store(){
-        $laboratorio = new Laboratories();
+        $laboratorio = new Laboratory();
 
         $laboratorio->name = request('name');
         $laboratorio->address = request('address');
@@ -38,7 +38,7 @@ class LaboratoriesController extends Controller
     }
 
     public function destroy($id){
-        $laboratorio = Laboratories::findOrFail($id);
+        $laboratorio = Laboratory::findOrFail($id);
         $laboratorio->delete();
 
         return redirect('/laboratorios');

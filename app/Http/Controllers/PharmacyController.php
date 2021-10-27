@@ -71,24 +71,22 @@ class PharmacyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pharmacy $pharmacy)
     {
-        $pharmacy = Pharmacy::find($id);
         return view('pages.pharmacies.show', compact('pharmacy'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pharmacy $pharmacy)
     {
-        $pharmacy = Pharmacy::find($id);
         return view('pages.pharmacies.edit', compact('pharmacy'));
     }
 
@@ -96,13 +94,11 @@ class PharmacyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pharmacy  $pharmacy)
     {
-        $pharmacy = Pharmacy::find($id);
-
         $pharmacy->state = $request->state;
         $pharmacy->city = $request->city;
         $pharmacy->postal_code = $request->postal_code;
@@ -118,13 +114,12 @@ class PharmacyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pharmacy  $pharmacy)
     {
-        Pharmacy::destroy($id);
-
+        $pharmacy->delete();
         return redirect()->route('pharmacies.index')->with("success", "Farmacia eliminada correctamente.");
     }
 }

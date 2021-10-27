@@ -188,6 +188,13 @@
                     </div>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class=" form-control-label">Título</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fas fa-university"></i></div>
+                    <input class="form-control pharmacist" required name="pharmacist.degree_name">
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col">
                     <div class="form-group">

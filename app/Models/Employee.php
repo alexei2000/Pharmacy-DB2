@@ -11,4 +11,9 @@ class Employee extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    public function pharmacist()
+    {
+        return $this->hasOne(Pharmacist::class);
+    }
 }

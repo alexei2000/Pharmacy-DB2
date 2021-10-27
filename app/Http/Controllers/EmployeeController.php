@@ -73,6 +73,7 @@ class EmployeeController extends Controller
                 $universityDegree->pharmacist_id = $employee->id;
                 $universityDegree->registry_number = $request->input("pharmacist_registry_number");
                 $universityDegree->university = $request->input("pharmacist_university");
+                $universityDegree->name = $request->input("pharmacist_degree_name");
                 $universityDegree->date_of_graduation = $request->input("pharmacist_date_of_graduation");
                 $universityDegree->save();
             } elseif ($request->input("isIntern")  === "true") {
@@ -106,7 +107,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
     public function show(Employee $employee)
@@ -117,10 +118,10 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
         //
     }
@@ -129,10 +130,10 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -140,14 +141,13 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
         File::delete("uploads/employees/{$employee->imageUrl}");
-        Employee::destroy($id);
+        $employee->delete();
         return redirect()->route('employees.index')->with("success", "Empleado eliminado correctamente.");
     }
 }
