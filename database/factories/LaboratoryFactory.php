@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Laboratories;
+use App\Models\Laboratory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LaboratoriesFactory extends Factory
+class LaboratoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Laboratories::class;
+    protected $model = Laboratory::class;
 
     /**
      * Define the model's default state.

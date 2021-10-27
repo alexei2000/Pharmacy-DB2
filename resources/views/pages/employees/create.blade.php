@@ -128,6 +128,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-lg-12 col-xl-6">
           <div class="card">
             <div class="card-header">
               <strong class="card-title">Datos del trabajo</strong>
@@ -146,70 +148,64 @@
               <div class="form-group">
                 <label class=" form-control-label">En que puesto trabaja</label>
                 <div class="input-group">
-                  <select data-placeholder="Puestos" class="standardSelect" tabindex="1" name="job_id">
+                  <select onchange="onChangeJob(this.value)" data-placeholder="Puestos" class="standardSelect"
+                    tabindex="1" name="job_id">
                     @foreach ($jobs as $job)
                     <option value="{{$job->id}}">{{$job->name}}</option>
                     @endforeach
                   </select>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12 col-xl-6">
-          <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <strong class="card-title">Es farmacéutico</strong>
-              <input type="checkbox" name="isPharmacist" value="true" onchange="togglePharmacist(this.checked)" />
-            </div>
-            <div class="card-body" id="pharmacist-body" style="display: none;">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label class=" form-control-label">Número de colegiatura</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="fas fa-graduation-cap"></i></div>
-                      <input class="form-control" type="number" name="pharmacist.tuition_number">
+              <div id="pharmacist-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class=" form-control-label">Número de colegiatura</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-graduation-cap"></i></div>
+                        <input class="form-control pharmacist" required type="number" name="pharmacist.tuition_number">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class=" form-control-label">Número sanitario</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-file-medical"></i></div>
+                        <input class="form-control pharmacist" required type="number" name="pharmacist.health_number">
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label class=" form-control-label">Número sanitario</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="fas fa-file-medical"></i></div>
-                      <input class="form-control" type="number" name="pharmacist.health_number">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class=" form-control-label">Número de registro</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-address-book"></i></div>
+                        <input class="form-control pharmacist" required type="number" name="pharmacist.registry_number">
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label class=" form-control-label">Número de registro</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="fas fa-address-book"></i></div>
-                      <input class="form-control" type="number" name="pharmacist.registry_number">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class=" form-control-label">Universidad</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-university"></i></div>
+                        <input class="form-control pharmacist" required name="pharmacist.university">
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label class=" form-control-label">Universidad</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="fas fa-university"></i></div>
-                      <input class="form-control" name="pharmacist.university">
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label class=" form-control-label">Fecha de graduación</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="fas fa-calendar"></i></div>
-                      <input type="date" class="form-control" name="pharmacist.date_of_graduation">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class=" form-control-label">Fecha de graduación</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-calendar"></i></div>
+                        <input type="date" class="form-control pharmacist" required
+                          name="pharmacist.date_of_graduation">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -228,7 +224,7 @@
                     <label class=" form-control-label">Especialidad</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
-                      <input class="form-control" name="intern.speciality">
+                      <input class="form-control intern" name="intern.speciality">
                     </div>
                   </div>
                 </div>
@@ -237,7 +233,7 @@
                     <label class=" form-control-label">Universidad</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fas fa-university"></i></div>
-                      <input class="form-control" name="intern.university">
+                      <input class="form-control intern" name="intern.university">
                     </div>
                   </div>
                 </div>
@@ -248,7 +244,7 @@
                     <label class="form-control-label">Fecha de inicio</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                      <input type="date" class="form-control" name="intern.initial_date">
+                      <input type="date" class="form-control intern" name="intern.initial_date">
                     </div>
                   </div>
                 </div>
@@ -257,7 +253,7 @@
                     <label class=" form-control-label">Fecha de finalización</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                      <input type="date" class="form-control" name="intern.final_date">
+                      <input type="date" class="form-control intern" name="intern.final_date">
                     </div>
                   </div>
                 </div>
@@ -276,7 +272,7 @@
                       <label class=" form-control-label">Nombres</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
-                        <input class="form-control" name="representative.name">
+                        <input class="form-control representative" name="representative.name">
                       </div>
                     </div>
                   </div>
@@ -285,7 +281,7 @@
                       <label class=" form-control-label">Apellidos</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
-                        <input class="form-control" name="representative.last_name">
+                        <input class="form-control representative" name="representative.last_name">
                       </div>
                     </div>
                   </div>
@@ -296,7 +292,7 @@
                       <label class=" form-control-label">Cédula</label>
                       <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                        <input class="form-control" name="representative.id">
+                        <input class="form-control representative" name="representative.id">
                       </div>
                     </div>
                   </div>
@@ -325,21 +321,39 @@
   function toggleIntern(checked) {
     const internBody =  document.getElementById("intern-body");
     internBody.style.display= checked ? "block" : "none"
+    for(let input of document.getElementsByClassName("intern") ){
+      input.required = checked
+    }
   }
-  function togglePharmacist(checked) {
+  function togglePharmacist(value) {
     const pharmacistBody =  document.getElementById("pharmacist-body");
     const isInternCheckbox =  document.getElementsByName("isIntern")[0];
-    isInternCheckbox.disabled = checked
-    if(checked){
+    isInternCheckbox.disabled = value
+    if(value){
       toggleIntern(false)
-      isInternCheckbox.checked = false
+      isInternCheckbox.value = false
     }
-    pharmacistBody.style.display= checked ? "block" : "none"
+    pharmacistBody.style.display= value ? "block" : "none"
+
+    //inputs
+    for(let input of document.getElementsByClassName("pharmacist") ){
+      input.required = value
+    }
+
   }
   function verifyInternshipAge(value) {
     const legalRepresentativeInputs =  document.getElementById("legal-representative-inputs");
-    legalRepresentativeInputs.style.display = calculateAge(value) < 18 ? "block" : "none";
+    isIntern = document.getElementsByClassName("isIntern")[0]
+    activeteRepresentative = isIntern && calculateAge(value) < 18
+    legalRepresentativeInputs.style.display = activeteRepresentative ? "block" : "none";
 
+    //inputs
+    for(let input of document.getElementsByClassName("representative") ){
+      input.required = activeteRepresentative
+    }
+  }
+  function onChangeJob(value){
+    togglePharmacist(value === "1");
   }
   
 </script>
