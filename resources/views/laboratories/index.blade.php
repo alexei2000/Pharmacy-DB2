@@ -3,7 +3,10 @@
 @section('content')
 
 
-<div class="container">
+
+
+
+<div class="container fadeiI">
   <div class="card">
     <div class="card-body d-flex justify-content-between">
       <h4 class="box-title">Laboratorios</h4>
