@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Employee;
+use App\Models\Pharmacist;
 use Illuminate\Database\Seeder;
 
-class EmployeeSeeder extends Seeder
+class PharmacistSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PharmacistSeeder::class);
+        Pharmacist::factory(10)->create();
     }
 }

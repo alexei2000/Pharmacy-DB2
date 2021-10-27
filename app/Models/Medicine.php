@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medicines extends Model
+class Medicine extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class Medicines extends Model
     
 
     public function laboratories(){
-        return $this->hasOne(Laboratories::class);
+        return $this->hasOne(Laboratory::class);
     }
 }

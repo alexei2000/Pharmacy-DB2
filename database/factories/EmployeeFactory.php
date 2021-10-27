@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Employee;
+use App\Models\Pharmacy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployeeFactory extends Factory
@@ -31,7 +32,7 @@ class EmployeeFactory extends Factory
             "date_of_birth" => $this->faker->dateTimeBetween(),
             "gender" => $this->faker->randomElement(["male", "female"]),
             "job_id" => $this->faker->randomElement([1, 2, 3, 4]),
-            "pharmacy_id" => $this->faker->randomElement([1, 2, 3]),
+            "pharmacy_id" => Pharmacy::factory(),
         ];
     }
 }

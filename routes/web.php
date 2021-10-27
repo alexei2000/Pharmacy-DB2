@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PharmacyController;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,21 +20,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-})->middleware('auth');
 
 Auth::routes();
 
 Route::middleware('auth')->group(
     function () {
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
-
         Route::resources([
             'medicinas' => MedicineController::class,
             'laboratorios' => LaboratoryController::class,
             'pharmacies' => PharmacyController::class,
             'employees' => EmployeeController::class
         ]);
+
+        Route::redirect(RouteServiceProvider::HOME, route('employees.index'))->name('home');
     }
 );

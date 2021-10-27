@@ -94,7 +94,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="/images/default-avatar.png" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
 
@@ -132,6 +132,25 @@
             </div>
         </footer>
         <!-- /.site-footer -->
+    </div>
+
+    <div class="alerts-container">
+        @if (session('success'))
+        <div class="alert alert-success fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        @if (session('error'))
+        <div class="alert alert-danger fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
     </div>
     <!-- /#right-panel -->
 

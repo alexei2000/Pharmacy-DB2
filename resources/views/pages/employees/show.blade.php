@@ -43,10 +43,50 @@
           </dl>
         </div>
       </div>
+      @php
+      $pharmacist = $employee->pharmacist;
+      $intern = $employee->intern;
+      @endphp
+      @if ($pharmacist || $intern)
+      <div class="card">
+        <div class="card-header">
+          <h4 class="box-title">
+            @if ($pharmacist)
+            Datos de farmaceuta
+            @elseif ($intern)
+            Datos de Interno
+            @endif
+          </h4>
+        </div>
+        <div class="card-body">
+          @if ($pharmacist)
+          <dl class="row">
+            <dt class="col-4">Nº de Matrícula</dt>
+            <dd class="col-8">{{ $pharmacist->tuition_number }}</dd>
+            <dt class="col-4">Nº de Seguro</dt>
+            <dd class="col-8">{{ $pharmacist->health_number }}</dd>
+          </dl>
+
+          <ol class="list-group">
+            @php
+            $degrees = $pharmacist->degrees;
+            @endphp
+            @foreach ($degrees as $degree)
+            <li class="list-group-item">
+              {{ "{$degree->name} - {$degree->university} ({$degree->date_of_graduation})" }}
+            </li>
+            @endforeach
+          </ol>
+          @elseif ($intern)
+          <pre>@json($intern, JSON_PRETTY_PRINT)</pre>
+          @endif
+        </div>
+      </div>
+      @endif
 
     </div>
     <div class="card-body">
-      <a class="btn btn-primary" href="{{ route('pharmacies.edit', $employee) }}">Editar</a>
+      <a class="btn btn-primary" href="{{ route('employees.edit', $employee) }}">Editar</a>
       <button class="btn btn-danger" type="button" data-toggle="modal"
         data-target="#confirm-delete-employee">Eliminar</button>
     </div>

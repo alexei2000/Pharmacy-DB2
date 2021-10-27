@@ -18,6 +18,7 @@ class CreatePharmacistUniversityDegreesTable extends Migration
             $table->string("pharmacist_id");
             $table->integer("registry_number")->unique();
             $table->string("university");
+            $table->string("name");
             $table->date("date_of_graduation");
             $table->timestamps();
         });
