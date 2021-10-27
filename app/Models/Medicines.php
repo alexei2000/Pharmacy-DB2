@@ -9,6 +9,9 @@ class Medicines extends Model
 {
     use HasFactory;
 
+    protected $fillable= ['laboratory_id', "name", "principal_component", "monodrug", "content", "unit", "therapeutic_action"];
+    
+
     public function laboratories(){
         return $this->hasOne(Laboratories::class);
     }
