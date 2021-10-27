@@ -71,3 +71,6 @@
    `/laboratorios` para el index de laboratorios.
 
     Una vez dentro de las mismas tendra la opción de crear y agregar una instancia a la base de datos o podra seleccionar cualquiera de las instancias para unas vistas de detalle donde tambien tendra la opción de editar y borrar.
+    
+## Funcionalidades extras
+El usuario administrador creado por consola tiene todos los permisos de lectura, creación y edición, mientras que uno creado dentro de la misma pagina es guardado como un usuario normal con solo permisos de lectura.
