@@ -1,9 +1,16 @@
 # Farmaplay
 
-## Integrantes
-- Ildebrando Quinchoa 26.154.327
+```json
+{
+    "integrantes" : [
+        "David Brito": 27.955.788,
+        "Ildebrando Quinchoa": 26.154.327,
+        "Alexei Hernández": 27.219.581,
+    ]
+}
+```
 
-## Requisitos:
+## Requisitos
 
 -   PHP & PHP Composer
 -   Laravel 8.0
@@ -19,27 +26,27 @@
 **Windows:**
 
 ```bat
-   rem Generar archivo de variables de entorno.
-   copy ".env.example" ".env"
+rem Generar archivo de variables de entorno.
+copy ".env.example" ".env"
 
-   rem Instalar dependencias de PHP Composer.
-   composer install
+rem Instalar dependencias de PHP Composer.
+composer install
 
-   rem Instalar dependencias npm y compilar.
-   npm install
-   npm run dev
+rem Instalar dependencias npm y compilar.
+npm install
+npm run dev
 
-   rem Generar la clave de cifrado de la aplicación
-   php artisan key:generate
+rem Generar la clave de cifrado de la aplicación
+php artisan key:generate
 
-   rem Aplicar migraciones de la base de datos
-   rem y ejecutar seeders para generar datos
-   php artisan migrate:fresh --seed
+rem Aplicar migraciones de la base de datos
+rem y ejecutar seeders para generar datos
+php artisan migrate:fresh --seed
 
-   rem para cear usuario con persmisos de administrador
-   php artisan user:create admin admin@admin.com 123456 --admin
+rem para cear usuario con persmisos de administrador
+php artisan user:create admin admin@admin.com 123456 --admin
 
-   php artisan serve
+php artisan serve
 ```
 
 **Linux:**
@@ -74,6 +81,7 @@
    `/laboratorios` para el index de laboratorios.
 
     Una vez dentro de las mismas tendra la opción de crear y agregar una instancia a la base de datos o podra seleccionar cualquiera de las instancias para unas vistas de detalle donde tambien tendra la opción de editar y borrar.
-    
+
 ## Funcionalidades extras
+
 El usuario administrador creado por consola tiene todos los permisos de lectura, creación y edición, mientras que uno creado dentro de la misma pagina es guardado como un usuario normal con solo permisos de lectura.
