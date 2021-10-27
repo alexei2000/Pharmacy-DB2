@@ -23,15 +23,14 @@ class EmployeeFactory extends Factory
     {
         return [
             "id" => $this->faker->ean8(),
-            "imageUrl" => $this->faker->randomElement(["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"]),
+            "imageUrl" => $this->faker->imageUrl(150, 150),
             "name" => $this->faker->name(),
             "last_name" => $this->faker->name(),
             "phone_number" => $this->faker->numerify("0424-###-####"),
+            "job" => $this->faker->randomElement(["farmaceutico", "cajero"]),
             "email" => $this->faker->email(),
             "date_of_birth" => $this->faker->dateTimeBetween(),
             "gender" => $this->faker->randomElement(["male", "female"]),
-            "job_id" => $this->faker->randomElement([1, 2, 3, 4]),
-            "pharmacy_id" => $this->faker->randomElement([1, 2, 3]),
         ];
     }
 }

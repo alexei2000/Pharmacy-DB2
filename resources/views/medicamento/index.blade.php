@@ -29,7 +29,7 @@
             @foreach($medicines as $medicamento)
             <tr style="cursor: pointer" onclick="document.location = '{{route('medicinas.show', $medicamento->id)}}'">
               <td>{{$loop->index + 1}}</td>
-              
+              <td><span> {{$medicamento->laboratories}} </span></td>
               <td> <span>{{$medicamento->name}}</span> </td>
               <td> <span>{{$medicamento->principal_component}}</span> </td>
               <td><span>{{$medicamento->monodrug}}</span></td>

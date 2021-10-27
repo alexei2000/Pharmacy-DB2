@@ -30,12 +30,7 @@
               <td>{{$employee->id}}</td>
               <td>
                 <div class="round-img">
-                  @if ($employee->imageUrl)
-                  <img class="rounded-circle" src="/uploads/employees/{{$employee->imageUrl}}"
-                    alt="{{$employee->name}}">
-                  @else
-                  <img class="rounded-circle" src="/no_user.jpg" alt="{{$employee->name}}">
-                  @endif
+                  <img class="rounded-circle" src="{{$employee->imageUrl}}" alt="{{$employee->name}}">
                 </div>
               </td>
               <td> <span>{{$employee->name}}</span> </td>
