@@ -5,11 +5,13 @@
     <div class="card">
         <div class="card-body d-flex justify-content-between">
             <h4 class="box-title">@yield('title', $title)</h4>
+            @if(Auth::check() && Auth::user()->hasRole('admin'))
             <button onclick="document.location = '{{ route($create_route) }}'" type="button"
                 class="btn btn-success btn-sm">
                 <span><i class="mr-2 fas fa-plus"></i></span>
                 Nueva
             </button>
+            @endif
         </div>
         <div class="card-body--">
             @php

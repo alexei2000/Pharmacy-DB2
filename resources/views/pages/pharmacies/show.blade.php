@@ -30,11 +30,15 @@
                 <dd class="col-9">{{ $pharmacy->address }}</dd>
             </dl>
         </div>
+
+        @if(Auth::check() && Auth::user()->hasRole('admin'))
+
         <div class="card-body">
             <a class="btn btn-primary" href="{{ route('pharmacies.edit', $pharmacy) }}">Editar</a>
             <button class="btn btn-danger" type="button" data-toggle="modal"
                 data-target="#confirm-delete-pharmacy">Eliminar</button>
         </div>
+        @endif
     </div>
 </div>
 <div id="confirm-delete-pharmacy" class="modal fadeIn" tabindex="-1">

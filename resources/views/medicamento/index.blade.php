@@ -8,8 +8,12 @@
   <div class="card">
     <div class="card-body d-flex justify-content-between">
       <h4 class="box-title">Medicamentos</h4>
+
+      @if(Auth::check() && Auth::user()->hasRole('admin'))
+
       <button onclick="document.location = '{{route('medicinas.create')}}'" type="button"
         class="btn btn-success btn-sm"><span><i class="mr-2 fas fa-plus"></i></span>Nuevo</button>
+      @endif
     </div>
     <div class="card-body--">
       <div class="table-stats order-table ov-h">
@@ -29,7 +33,7 @@
             @foreach($medicines as $medicamento)
             <tr style="cursor: pointer" onclick="document.location = '{{route('medicinas.show', $medicamento->id)}}'">
               <td>{{$loop->index + 1}}</td>
-              
+
               <td> <span>{{$medicamento->name}}</span> </td>
               <td> <span>{{$medicamento->principal_component}}</span> </td>
               <td><span>{{$medicamento->monodrug}}</span></td>

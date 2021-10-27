@@ -13,7 +13,7 @@ class UserCreate extends Command
      *
      * @var string
      */
-    protected $signature = 'user:create {name} {email} {password}';
+    protected $signature = 'user:create {name} {email} {password} {--admin}';
 
     /**
      * The console command description.
@@ -43,7 +43,11 @@ class UserCreate extends Command
         $email = $this->argument('email');
         $password = Hash::make($this->argument('password'));
 
-        User::create(compact('name', 'email', 'password'));
+        $user = User::create(compact('name', 'email', 'password'));
+
+        if ($this->option('admin')) {
+            $user->addRole('admin');
+        }
 
         return Command::SUCCESS;
     }

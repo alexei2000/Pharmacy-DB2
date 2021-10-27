@@ -85,11 +85,15 @@
       @endif
 
     </div>
+
+    @if(Auth::check() && Auth::user()->hasRole('admin'))
+
     <div class="card-body">
       <a class="btn btn-primary" href="{{ route('employees.edit', $employee) }}">Editar</a>
       <button class="btn btn-danger" type="button" data-toggle="modal"
         data-target="#confirm-delete-employee">Eliminar</button>
     </div>
+    @endif
   </div>
 </div>
 <div id="confirm-delete-employee" class="modal fadeIn" tabindex="-1">
